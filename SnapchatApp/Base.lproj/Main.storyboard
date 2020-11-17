@@ -88,7 +88,7 @@
                         <outlet property="emailText" destination="WFq-Rb-yqb" id="fYB-Z7-UoO"/>
                         <outlet property="passwordText" destination="PT5-dc-148" id="5VY-1j-8Uc"/>
                         <outlet property="usernameText" destination="YmI-ID-8Kv" id="sgR-LR-Wfw"/>
-                        <segue destination="CvJ-Ut-cdg" kind="presentation" identifier="FeedVC" modalPresentationStyle="fullScreen" id="YeV-bn-KqL"/>
+                        <segue destination="CvJ-Ut-cdg" kind="presentation" identifier="toFeedVC" modalPresentationStyle="fullScreen" id="YeV-bn-KqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,6 +168,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="s.circle.fill" catalog="system" id="jaO-Ee-tIG"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSignInVC" modalPresentationStyle="fullScreen" id="bm9-2h-gTy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyY-2v-j6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +244,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="k2x-PZ-Ix7">
             <objects>
-                <tabBarController id="CvJ-Ut-cdg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="CvJ-Ut-cdg" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dUF-OO-l37">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
