@@ -103,13 +103,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-ev-hzy">
-                                <rect key="frame" x="20" y="74" width="374" height="526"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="NSz-oR-tJe"/>
-                                    <constraint firstAttribute="height" constant="526" id="oLD-U7-FlG"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV1-mV-oof">
                                 <rect key="frame" x="123" y="636" width="168" height="87"/>
                                 <constraints>
@@ -120,6 +113,13 @@
                                     <action selector="uploadClicked:" destination="4OG-5e-SqD" eventType="touchUpInside" id="FBB-PJ-Zna"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-ev-hzy">
+                                <rect key="frame" x="20" y="74" width="374" height="526"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="NSz-oR-tJe"/>
+                                    <constraint firstAttribute="height" constant="526" id="oLD-U7-FlG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Grg-cw-q47"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -264,6 +264,7 @@
     <resources>
         <image name="f.circle.fill" catalog="system" width="128" height="121"/>
         <image name="s.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="select" width="143" height="133"/>
         <image name="u.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
