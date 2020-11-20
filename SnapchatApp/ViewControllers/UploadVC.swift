@@ -1,9 +1,3 @@
-//
-//  UploadVC.swift
-//  SnapchatApp
-//
-//  Created by Rusen Topcu on 15.11.2020.
-//
 
 import UIKit
 import Firebase
@@ -61,25 +55,58 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             
                             let firestore = Firestore.firestore()
                             
-                            let snapDictionary = ["imageUrl": imageUrl!, "snapOwner": UserSingleton.sharedUserInfo.username,"date": FieldValue.serverTimestamp()] as [String: Any]
-                            
-                            firestore.collection("Snaps").addDocument(data: snapDictionary) { (error) in
+                            firestore.collection("Snaps").whereField("snapOwner", isEqualTo: UserSingleton.sharedUserInfo.username).getDocuments { (snaphot, error) in
+                                
                                 if error != nil {
-                                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "ERRor")
+                                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
                                 }
                                 else {
-                                    self.tabBarController?.selectedIndex = 0
-                                    self.uploadImageView.image = UIImage(named: "select")
+                                    
+                                    if snaphot?.isEmpty == false && snaphot != nil {
+                                        
+                                        for document in snaphot!.documents {
+                                            
+                                            let documentId = document.documentID
+                                            
+                                            if var imageUrlArray = document.get("imageUrlArray") as? [String] {
+                                                
+                                                imageUrlArray.append(imageUrl!)
+                                                
+                                                let additionalDictionary = ["imageUrlArray" : imageUrlArray] as [String : Any]
+                                                
+                                                firestore.collection("Snaps").document(documentId).setData(additionalDictionary, merge: true) { (error) in
+                                                    if error == nil {
+                                                        
+                                                        self.tabBarController?.selectedIndex = 0
+                                                        self.uploadImageView.image = UIImage(named: "select.png")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    else {
+                                        
+                                        let snapDictionary = ["imageUrlArray": [imageUrl!], "snapOwner": UserSingleton.sharedUserInfo.username,"date": FieldValue.serverTimestamp()] as [String: Any]
+                                        
+                                        firestore.collection("Snaps").addDocument(data: snapDictionary) { (error) in
+                                            if error != nil {
+                                                self.makeAlert(title: "Error", message: error?.localizedDescription ?? "ERRor")
+                                            }
+                                            else {
+                                                self.tabBarController?.selectedIndex = 0
+                                                self.uploadImageView.image = UIImage(named: "select")
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                             }
-                            
                         }
                     }
                 }
             }
-            
         }
-        
     }
     
     @objc func makeAlert(title: String, message: String) {
